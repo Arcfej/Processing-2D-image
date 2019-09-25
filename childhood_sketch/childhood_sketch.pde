@@ -36,6 +36,7 @@ void drawHeli(int x, int y, float width, color hexColor) {
     vertex(x + width, y + r + propHeight);
     vertex(x + r + a, y + 2*r - b + propHeight);
     endShape();
+  strokeWeight(width/100);
   // foot of the heli
   line(x + r, y + 2*r + propHeight, x + r, y + 2.5*r + propHeight);
   line(x + 2*r, y + 2*r - c - b + propHeight, x + 2*r, y + 2.5*r + propHeight);
@@ -46,5 +47,7 @@ void drawHeli(int x, int y, float width, color hexColor) {
   line(x, y + propHeight, x + 3*r, x);
   // back propeller
   line(x + width - 2*a, y + propHeight + 2*r - 15*b, x + width, y + 15*b + propHeight);
-  circle(x + width - a, y + propHeight + r, width/50);
+  strokeWeight(1);
+  fill(#000000);
+  circle(x + width - a, y + propHeight + r, width/45);
 }
