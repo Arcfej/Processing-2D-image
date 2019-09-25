@@ -10,15 +10,14 @@ void draw() {
   int heliX = 10;
   int heliY = 10;
   
-  fill(#444444);
-  drawHeli(heliX, heliY, 500);
+  drawHeli(heliX, heliY, 500, #eaeaea);
 }
 
-void drawHeli(int x, int y, float width) {
+void drawHeli(int x, int y, float width, color hexColor) {
   // angle of the body
   float degree = 15 * PI / 180;
   // radius of the pilot cabin
-  float r = width * sin(degree) / (2 + 2 * sin(degree));
+  float r = width * sin(degree) / (1 + sin(degree));
   // height of the top-propellers
   float propHeight = r;
   // the body of the helicopter
@@ -27,17 +26,16 @@ void drawHeli(int x, int y, float width) {
     float b = sin(degree/2) * 2*r * sin(degree/2);
     // distance for the foot- and top propeller-collumn
     float c = tan(degree) * (r - a);
-    // distance for the quadraticVertex controlPoint
-    float d = r * tan(degree/2);
+    // pilot cabin
+    fill(#80EBF0);
+    arc(x + r, y + r + propHeight, 2*r, 2*r, HALF_PI - degree, 3*HALF_PI + degree, OPEN);
+    // tail
+    fill(hexColor);
     beginShape();
-    vertex(x + r + a, y + 2*r - b + propHeight);
-    quadraticVertex(x + r + d, y + 2*r + propHeight, x + r, y + 2*r + propHeight);
-    quadraticVertex(x, y + 2*r + propHeight, x, y + r + propHeight);
-    quadraticVertex(x, y + propHeight, x + r, y + propHeight);
-    quadraticVertex(x + r + d, y + propHeight, x + r + a, y + b + propHeight);
     vertex(x + r + a, y + b + propHeight);
-    vertex(x + width/2, y + r + propHeight);
-    endShape(CLOSE);
+    vertex(x + width, y + r + propHeight);
+    vertex(x + r + a, y + 2*r - b + propHeight);
+    endShape();
   // foot of the heli
   line(x + r, y + 2*r + propHeight, x + r, y + 2.5*r + propHeight);
   line(x + 2*r, y + 2*r - c - b + propHeight, x + 2*r, y + 2.5*r + propHeight);
