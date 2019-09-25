@@ -10,23 +10,18 @@ void draw() {
   int heliX = 0;
   int heliY = 0;
   
-  drawHeli(heliX, heliY, 300, #eaeaea);
+  drawHeli(heliX, heliY, 300, #dadada);
   drawPerson(300, 300, 50);
 }
 
 void drawHeli(int x, int y, int width, color hexColor) {
-  // angle of the body
-  float degree = 15 * PI / 180;
-  // radius of the pilot cabin
-  float r = width * sin(degree) / (1 + sin(degree));
-  // height of the top-propellers
-  float propHeight = r;
+  float degree = 15 * PI / 180;                      // angle of the body
+  float r = width * sin(degree) / (1 + sin(degree)); // radius of the pilot cabin
+  float propHeight = r;                              // height of the top-propellers
   // the body of the helicopter
-    // distances for the coordinates of the curve ends
-    float a = sin(degree/2) * 2*r * cos(degree/2);
-    float b = sin(degree/2) * 2*r * sin(degree/2);
-    // distance for the foot- and top propeller-collumn
-    float c = tan(degree) * (r - a);
+    float a = sin(degree/2) * 2*r * cos(degree/2);   // distances for the coordinates of the curve ends
+    float b = sin(degree/2) * 2*r * sin(degree/2);   // distances for the coordinates of the curve ends
+    float c = tan(degree) * (r - a);                 // distance for the foot- and top propeller-collumn
     // pilot cabin
     fill(#80EBF0);
     arc(x + r, y + r + propHeight, 2*r, 2*r, HALF_PI - degree, 3*HALF_PI + degree, OPEN);
@@ -48,22 +43,23 @@ void drawHeli(int x, int y, int width, color hexColor) {
   line(x, y + propHeight, x + 3*r, x);
   // back propeller
   line(x + width - 2*a, y + propHeight + 2*r - 15*b, x + width, y + 15*b + propHeight);
-  strokeWeight(1);
+  noStroke();
   fill(#000000);
-  circle(x + width - a, y + propHeight + r, width/45);
+  circle(x + width - a, y + propHeight + r, width/50);
 }
 
 void drawPerson(int x, int y, int width) {
   noFill();
+  stroke(#000000);
   strokeWeight(0.05*width);
   // head
-   circle(x + width/2, y + width/4, width/2);
-   // body
-   line(x + width/2, y + width/2, x + width/2, y + 1.5*width);
-   // arms
-   line(x, y + 0.1*width, x + 0.5*width, y + 0.75*width);
-   line(x + width, y + 0.1*width, x + 0.5*width, y + 0.75*width);
-   // legs
-   line(x + width/2, y + 1.5*width, x, y + 2.5*width);
-   line(x + width/2, y + 1.5*width, x + width, y + 2.5*width);
+  circle(x + width/2, y + width/4, width/2);
+  // body
+  line(x + width/2, y + width/2, x + width/2, y + 1.5*width);
+  // arms
+  line(x, y + 0.1*width, x + 0.5*width, y + 0.75*width);
+  line(x + width, y + 0.1*width, x + 0.5*width, y + 0.75*width);
+  // legs
+  line(x + width/2, y + 1.5*width, x, y + 2.5*width);
+  line(x + width/2, y + 1.5*width, x + width, y + 2.5*width);
 }
