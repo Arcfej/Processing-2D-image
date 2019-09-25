@@ -11,7 +11,7 @@ void draw() {
   int heliY = 0;
   
   drawHeli(heliX, heliY, 300, #dadada);
-  drawPerson(300, 300, 50);
+  shape(createPerson(0, 0, 50));
 }
 
 void drawHeli(int x, int y, int width, color hexColor) {
@@ -46,20 +46,25 @@ void drawHeli(int x, int y, int width, color hexColor) {
   noStroke();
   fill(#000000);
   circle(x + width - a, y + propHeight + r, width/50);
+  // carry the person
+  stroke(#000000);
+  line(x + 1.5*r, y + propHeight + 2*r - c/2, x + 1.5*r, y + propHeight + 4*r); 
 }
 
-void drawPerson(int x, int y, int width) {
+PShape createPerson(int x, int y, int width) {
   noFill();
   stroke(#000000);
   strokeWeight(0.05*width);
+  PShape person = createShape(GROUP);
   // head
-  circle(x + width/2, y + width/4, width/2);
+  person.addChild(createShape(ELLIPSE, x + width/2, y + width/4, width/2, width/2));
   // body
-  line(x + width/2, y + width/2, x + width/2, y + 1.5*width);
+  person.addChild(createShape(LINE, x + width/2, y + width/2, x + width/2, y + 1.5*width));
   // arms
-  line(x, y + 0.1*width, x + 0.5*width, y + 0.75*width);
-  line(x + width, y + 0.1*width, x + 0.5*width, y + 0.75*width);
+  person.addChild(createShape(LINE, x, y + 0.1*width, x + 0.5*width, y + 0.75*width));
+  person.addChild(createShape(LINE, x + width, y + 0.1*width, x + 0.5*width, y + 0.75*width));
   // legs
-  line(x + width/2, y + 1.5*width, x, y + 2.5*width);
-  line(x + width/2, y + 1.5*width, x + width, y + 2.5*width);
+  person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x, y + 2.5*width));
+  person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x + width, y + 2.5*width));
+  return person;
 }
