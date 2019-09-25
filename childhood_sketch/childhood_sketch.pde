@@ -10,10 +10,11 @@ void draw() {
   int heliX = 0;
   int heliY = 0;
   
-  drawHeli(heliX, heliY, 500, #eaeaea);
+  drawHeli(heliX, heliY, 300, #eaeaea);
+  drawPerson(300, 300, 50);
 }
 
-void drawHeli(int x, int y, float width, color hexColor) {
+void drawHeli(int x, int y, int width, color hexColor) {
   // angle of the body
   float degree = 15 * PI / 180;
   // radius of the pilot cabin
@@ -50,4 +51,19 @@ void drawHeli(int x, int y, float width, color hexColor) {
   strokeWeight(1);
   fill(#000000);
   circle(x + width - a, y + propHeight + r, width/45);
+}
+
+void drawPerson(int x, int y, int width) {
+  noFill();
+  strokeWeight(0.05*width);
+  // head
+   circle(x + width/2, y + width/4, width/2);
+   // body
+   line(x + width/2, y + width/2, x + width/2, y + 1.5*width);
+   // arms
+   line(x, y + 0.1*width, x + 0.5*width, y + 0.75*width);
+   line(x + width, y + 0.1*width, x + 0.5*width, y + 0.75*width);
+   // legs
+   line(x + width/2, y + 1.5*width, x, y + 2.5*width);
+   line(x + width/2, y + 1.5*width, x + width, y + 2.5*width);
 }
