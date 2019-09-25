@@ -7,27 +7,37 @@ void setup() {
 void draw() {
   stroke(#000000);
   // Helicopter
-  int heliX = 0;
-  int heliY = 0;
+  int heliX = 10;
+  int heliY = 10;
   
-  drawHeli(heliX, heliY, 1200);
+  fill(#444444);
+  drawHeli(heliX, heliY, 500);
 }
 
-void drawHeli(int x, int y, float size) {
+void drawHeli(int x, int y, float width) {
   // angle of the body
   float degree = 15 * PI / 180;
   // radius of the pilot cabin
-  float r = size * sin(degree) / (2 + 2 * sin(degree));
+  float r = width * sin(degree) / (2 + 2 * sin(degree));
   // height of the top-propellers
   float propHeight = r;
-  // the pilot cabin
-  arc(x + r, y + r + propHeight, 2*r, 2*r, HALF_PI - degree, 3*HALF_PI + degree);
-  // the tail of the heli
-  float a = sin(degree/2) * 2*r * cos(degree/2);
-  float b = sin(degree/2) * 2*r * sin(degree/2);
-  float c = tan(degree) * (r - a);
-  line(x + r + a, y + b +propHeight, x + size/2, y + r + propHeight);
-  line(x + r + a, y + 2*r - b + propHeight, x + size/2, y + r + propHeight);
+  // the body of the helicopter
+    // distances for the coordinates of the curve ends
+    float a = sin(degree/2) * 2*r * cos(degree/2);
+    float b = sin(degree/2) * 2*r * sin(degree/2);
+    // distance for the foot- and top propeller-collumn
+    float c = tan(degree) * (r - a);
+    // distance for the quadraticVertex controlPoint
+    float d = r * tan(degree/2);
+    beginShape();
+    vertex(x + r + a, y + 2*r - b + propHeight);
+    quadraticVertex(x + r + d, y + 2*r + propHeight, x + r, y + 2*r + propHeight);
+    quadraticVertex(x, y + 2*r + propHeight, x, y + r + propHeight);
+    quadraticVertex(x, y + propHeight, x + r, y + propHeight);
+    quadraticVertex(x + r + d, y + propHeight, x + r + a, y + b + propHeight);
+    vertex(x + r + a, y + b + propHeight);
+    vertex(x + width/2, y + r + propHeight);
+    endShape(CLOSE);
   // foot of the heli
   line(x + r, y + 2*r + propHeight, x + r, y + 2.5*r + propHeight);
   line(x + 2*r, y + 2*r - c - b + propHeight, x + 2*r, y + 2.5*r + propHeight);
