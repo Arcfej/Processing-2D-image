@@ -7,8 +7,8 @@ void setup() {
 void draw() {
   stroke(#000000);
   // Helicopter
-  int heliX = 10;
-  int heliY = 10;
+  int heliX = 0;
+  int heliY = 0;
   
   drawHeli(heliX, heliY, 500, #eaeaea);
 }
@@ -45,5 +45,6 @@ void drawHeli(int x, int y, float width, color hexColor) {
   line(x, y, x + 3*r, y + propHeight);
   line(x, y + propHeight, x + 3*r, x);
   // back propeller
-  //line 
+  line(x + width - 2*a, y + propHeight + 2*r - 15*b, x + width, y + 15*b + propHeight);
+  circle(x + width - a, y + propHeight + r, width/50);
 }
