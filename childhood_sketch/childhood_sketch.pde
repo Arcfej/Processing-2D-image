@@ -6,16 +6,14 @@ void setup() {
 
 void draw() {
   stroke(#000000);
-  // Helicopter
-  int heliX = 0;
-  int heliY = 0;
-  
-  drawHeli(heliX, heliY, 300, #dadada);
-  shape(createPerson(0, 0, 50));
+  drawHeli(15, 15, 100, #dadada);
+  drawHeli(150, 125, 100, #dadada);
+  drawHeli(320, 100, 100, #dadada);
+  drawHeli(488, 39, 100, #dadada);
 }
 
 void drawHeli(int x, int y, int width, color hexColor) {
-  float degree = 15 * PI / 180;                      // angle of the body
+  float degree = radians(15);                        // angle of the body
   float r = width * sin(degree) / (1 + sin(degree)); // radius of the pilot cabin
   float propHeight = r;                              // height of the top-propellers
   // the body of the helicopter
@@ -40,7 +38,7 @@ void drawHeli(int x, int y, int width, color hexColor) {
   // top propeller
   line(x + 1.5*r, y + propHeight/2, x + 1.5*r, y + propHeight + c/2);
   line(x, y, x + 3*r, y + propHeight);
-  line(x, y + propHeight, x + 3*r, x);
+  line(x, y + propHeight, x + 3*r, y);
   // back propeller
   line(x + width - 2*a, y + propHeight + 2*r - 15*b, x + width, y + 15*b + propHeight);
   noStroke();
@@ -49,10 +47,11 @@ void drawHeli(int x, int y, int width, color hexColor) {
   // carry the person
   stroke(#000000);
   strokeWeight(width/175);
-  line(x + 1.5*r, y + propHeight + 2*r - c/2, x + 1.5*r, y + propHeight + 4.5*r); 
+  line(x + 1.5*r, y + propHeight + 2*r - c/2, x + 1.5*r, y + propHeight + 4.5*r);
+  shape(createPerson(x + r, y + propHeight + 3.25*r, r));
 }
 
-PShape createPerson(int x, int y, int width) {
+PShape createPerson(float x, float y, float width) {
   noFill();
   stroke(#000000);
   strokeWeight(0.05*width);
