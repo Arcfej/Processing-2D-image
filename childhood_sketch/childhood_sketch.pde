@@ -8,7 +8,7 @@ void draw() {
   stroke(#000000);
   // Helicopters
   drawHeli(15, 15, 100, #dadada);
-  drawHeli(150, 125, 100, #dadada);
+  drawHeli(150, 125, 100, #dadafe);
   drawHeli(320, 100, 100, #dadada);
   drawHeli(488, 39, 100, #dadada);
   int waveHeight = 10;
