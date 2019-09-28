@@ -1,6 +1,6 @@
 void setup() {
   size(600, 600);
-  background(#ffffff);
+  background(#C4EDFF);
   noLoop();
 }
 
@@ -14,13 +14,16 @@ void draw() {
   int waveHeight = 10;
   // Sea
   stroke(#3DC9F2);
+  fill(#3DC9F2);
   beginShape();
   curveVertex(0, 300);
   for(float i = 0; i <= 600; i += 0.25) {
     curveVertex(i, 300 + waveHeight * sin(i/15));
   }
-  curveVertex(600, 300 + waveHeight * sin(600/15)); 
-  endShape();
+  curveVertex(600, 300 + waveHeight * sin(600/15));
+  vertex(600, 600);
+  vertex(0, 600);
+  endShape(CLOSE);
   //Sharks
   drawShark(100, 320, 100);
   drawShark(10, 400, 80);
@@ -70,7 +73,7 @@ void drawHeli(int x, int y, int width, color hexColor) {
 }
 
 PShape createPerson(float x, float y, float width) {
-  noFill();
+  fill(#000000);
   stroke(#000000);
   strokeWeight(0.05*width);
   PShape person = createShape(GROUP);
@@ -88,7 +91,7 @@ PShape createPerson(float x, float y, float width) {
 }
 
 void drawShark(float x, float y, float w) {
-  noFill();
+  fill(#E0E2E3);
   stroke(#000000);
   strokeWeight(0.001*width);
   //PShape shark = createShape(GROUP);
