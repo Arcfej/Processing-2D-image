@@ -45,10 +45,11 @@ void drawHeli(int x, int y, int width, color hexColor) {
   line(x + width - 2*a, y + propHeight + 2*r - 15*b, x + width, y + 15*b + propHeight);
   noStroke();
   fill(#000000);
-  circle(x + width - a, y + propHeight + r, width/50);
+  ellipse(x + width - a, y + propHeight + r, width/50, width/50);
   // carry the person
   stroke(#000000);
-  line(x + 1.5*r, y + propHeight + 2*r - c/2, x + 1.5*r, y + propHeight + 4*r); 
+  strokeWeight(width/175);
+  line(x + 1.5*r, y + propHeight + 2*r - c/2, x + 1.5*r, y + propHeight + 4.5*r); 
 }
 
 PShape createPerson(int x, int y, int width) {
