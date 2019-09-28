@@ -10,6 +10,15 @@ void draw() {
   drawHeli(150, 125, 100, #dadada);
   drawHeli(320, 100, 100, #dadada);
   drawHeli(488, 39, 100, #dadada);
+  int waveHeight = 10;
+  // Sea
+  beginShape();
+  curveVertex(0, 300);
+  for(float i = 0; i <= 600; i += 0.25) {
+    curveVertex(i, 300 + waveHeight * sin(i/10));
+  }
+  curveVertex(600, 300 + waveHeight * sin(60)); 
+  endShape();
 }
 
 void drawHeli(int x, int y, int width, color hexColor) {
