@@ -6,6 +6,7 @@ void setup() {
 
 void draw() {
   stroke(#000000);
+  // Helicopters
   drawHeli(15, 15, 100, #dadada);
   drawHeli(150, 125, 100, #dadada);
   drawHeli(320, 100, 100, #dadada);
@@ -15,10 +16,17 @@ void draw() {
   beginShape();
   curveVertex(0, 300);
   for(float i = 0; i <= 600; i += 0.25) {
-    curveVertex(i, 300 + waveHeight * sin(i/10));
+    curveVertex(i, 300 + waveHeight * sin(i/15));
   }
-  curveVertex(600, 300 + waveHeight * sin(60)); 
+  curveVertex(600, 300 + waveHeight * sin(600/15)); 
   endShape();
+  //Sharks
+  drawShark(100, 320, 100);
+  drawShark(10, 400, 80);
+  drawShark(450, 520, 50);
+  drawShark(500, 398, 71);
+  drawShark(25, 555, 103);
+  drawShark(360, 376, 79);
 }
 
 void drawHeli(int x, int y, int width, color hexColor) {
@@ -76,4 +84,24 @@ PShape createPerson(float x, float y, float width) {
   person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x, y + 2.5*width));
   person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x + width, y + 2.5*width));
   return person;
+}
+
+void drawShark(float x, float y, float w) {
+  noFill();
+  stroke(#000000);
+  strokeWeight(0.001*width);
+  //PShape shark = createShape(GROUP);
+  beginShape();
+  vertex(x, y);
+  vertex(x + w*2/12, y + w/12);
+  vertex(x + w*5/12, y + w/12);
+  vertex(x + w*6/12, y - w/12);
+  vertex(x + w*7/12, y + w/12);
+  vertex(x + w, y + w/12);
+  vertex(x + w*9/12, y + w*2/12);
+  vertex(x + w, y + w*3/12);
+  vertex(x + w*2/12, y + w*3/12);
+  vertex(x, y + w*4/12);
+  vertex(x + w/12, y + w*2/12);
+  endShape(CLOSE);
 }
