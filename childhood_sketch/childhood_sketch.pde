@@ -13,6 +13,7 @@ void draw() {
   drawHeli(488, 39, 100, #dadada);
   int waveHeight = 10;
   // Sea
+  stroke(#3DC9F2);
   beginShape();
   curveVertex(0, 300);
   for(float i = 0; i <= 600; i += 0.25) {
