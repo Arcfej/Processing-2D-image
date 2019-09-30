@@ -94,7 +94,7 @@ PShape createPerson(float x, float y, float width) {
 
 void mouseMoved() {
   waveStart = (mouseY - 300) / PI;
-  printArray(waveStart + " " + waveHeight);
+  waveHeight = (mouseX + 300) / 60;
   redraw();
 }
 
