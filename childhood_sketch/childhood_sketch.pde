@@ -1,26 +1,28 @@
 void setup() {
   size(600, 600);
-  background(#C4EDFF);
   noLoop();
 }
 
+float waveHeight = 10;
+float waveStart = 300;
+
 void draw() {
+  background(#C4EDFF);
   stroke(#000000);
   // Helicopters
   drawHeli(15, 15, 100, #dadada);
   drawHeli(150, 125, 100, #dadafe);
   drawHeli(320, 100, 100, #dadada);
   drawHeli(488, 39, 100, #dadada);
-  int waveHeight = 10;
   // Sea
   stroke(#3DC9F2);
   fill(#3DC9F2);
   beginShape();
-  curveVertex(0, 300);
+  curveVertex(0, sin(0 + waveStart));
   for(float i = 0; i <= 600; i += 0.25) {
-    curveVertex(i, 300 + waveHeight * sin(i/15));
+    curveVertex(i, 300 + waveHeight * sin((i + waveStart) / 15) );
   }
-  curveVertex(600, 300 + waveHeight * sin(600/15));
+  curveVertex(600, 300 + waveHeight * sin((600 + waveStart) / 15) );
   vertex(600, 600);
   vertex(0, 600);
   endShape(CLOSE);
@@ -88,6 +90,12 @@ PShape createPerson(float x, float y, float width) {
   person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x, y + 2.5*width));
   person.addChild(createShape(LINE, x + width/2, y + 1.5*width, x + width, y + 2.5*width));
   return person;
+}
+
+void mouseMoved() {
+  waveStart = (mouseY - 300) / PI;
+  printArray(waveStart + " " + waveHeight);
+  redraw();
 }
 
 void drawShark(float x, float y, float w) {
